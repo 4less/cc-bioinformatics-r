@@ -29,6 +29,8 @@ sandbox/             — scratch space for quick experiments
 2. Install renv if needed: `R -e "install.packages('renv')"`.
 3. From the project root: `just setup` to install/restore R packages. It also snapshots explicitly so the lockfile stays in sync.
 4. Add packages with `R -e "renv::install('pkg')"`, then `just snapshot` to record them (snapshot is explicit, so it captures everything installed in the project library).
+
+If you choose `use_git = "yes"` when rendering, the template will run `git init` and make an initial commit automatically (skipped if git is unavailable).
 5. Run your own recipes via `just` (see the `justfile` for examples).
 
 ## Task runner (`just`)
