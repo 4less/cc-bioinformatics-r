@@ -28,7 +28,7 @@ sandbox/             — scratch space for quick experiments
 1. Install R (≥ 4.2 recommended) and `just` (https://github.com/casey/just).
 2. Install renv if needed: `R -e "install.packages('renv')"`.
 3. From the project root: `just setup` to install/restore R packages.
-4. Add packages with `R -e "renv::install('pkg')"`, then `just snapshot` to record them.
+4. Add packages with `R -e "renv::install('pkg')"`, then `just snapshot` to record them (snapshot is explicit, so it captures everything installed in the project library).
 5. Run your own recipes via `just` (see the `justfile` for examples).
 
 ## Task runner (`just`)

@@ -1,17 +1,17 @@
 # set shell to bash for consistent behavior
 set shell := ["bash", "-c"]
 
-# Install renv (if missing) and restore packages from renv.lock
+# Install renv (if missing), initialize if needed, load project, then restore
 setup:
-	Rscript -e "if (!requireNamespace('renv', quietly = TRUE)) install.packages('renv'); renv::restore(prompt = FALSE)"
+	Rscript -e "if (!requireNamespace('renv', quietly = TRUE)) install.packages('renv'); if (!file.exists('renv/activate.R')) renv::init(bare = TRUE); renv::load(); if (file.exists('renv.lock')) renv::restore(prompt = FALSE)"
 
 # Restore packages (assumes renv is already installed)
 restore:
-	Rscript -e "renv::restore(prompt = FALSE)"
+	Rscript -e "if (!requireNamespace('renv', quietly = TRUE)) install.packages('renv'); if (!file.exists('renv/activate.R')) renv::init(bare = TRUE); renv::load(); if (file.exists('renv.lock')) renv::restore(prompt = FALSE)"
 
 # Snapshot current library state into renv.lock
 snapshot:
-	Rscript -e "renv::snapshot(prompt = FALSE)"
+	Rscript -e "renv::load(); renv::snapshot(prompt = FALSE, type = 'explicit')"
 
 # Remove local renv library and lockfile (forces a fresh restore next time)
 clean-renv:
