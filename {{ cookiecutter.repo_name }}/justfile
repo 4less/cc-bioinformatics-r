@@ -11,7 +11,7 @@ restore:
 
 # Snapshot current library state into renv.lock
 snapshot:
-	Rscript -e "renv::load(); renv::snapshot(prompt = FALSE, type = 'explicit')"
+	Rscript -e 'renv::load(); pkgs <- rownames(utils::installed.packages(lib.loc = renv::paths$library())); renv::snapshot(prompt = FALSE, type = "explicit", packages = pkgs)'
 
 # Remove local renv library and lockfile (forces a fresh restore next time)
 clean-renv:
