@@ -3,7 +3,7 @@ set shell := ["bash", "-c"]
 
 # Install renv (if missing), initialize if needed, load project, restore, then snapshot explicitly
 setup:
-	Rscript -e "if (!requireNamespace('renv', quietly = TRUE)) install.packages('renv'); if (!file.exists('renv/activate.R')) renv::init(bare = TRUE); renv::load(); renv::settings$snapshot.type('explicit'); if (file.exists('renv.lock')) renv::restore(prompt = FALSE); renv::snapshot(prompt = FALSE, type = 'explicit')"
+	Rscript -e "if (!requireNamespace('renv', quietly = TRUE)) install.packages('renv'); if (!file.exists('renv/activate.R')) renv::init(bare = TRUE); renv::load(); renv::settings$snapshot.type(\"explicit\"); if (file.exists('renv.lock')) renv::restore(prompt = FALSE); renv::snapshot(prompt = FALSE, type = 'explicit')"
 
 # Restore packages (assumes renv is already installed)
 restore:
