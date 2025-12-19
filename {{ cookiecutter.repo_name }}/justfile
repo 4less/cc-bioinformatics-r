@@ -1,0 +1,24 @@
+# set shell to bash for consistent behavior
+set shell := ["bash", "-c"]
+
+# Install renv (if missing) and restore packages from renv.lock
+setup:
+	Rscript -e "if (!requireNamespace('renv', quietly = TRUE)) install.packages('renv'); renv::restore(prompt = FALSE)"
+
+# Restore packages (assumes renv is already installed)
+restore:
+	Rscript -e "renv::restore(prompt = FALSE)"
+
+# Snapshot current library state into renv.lock
+snapshot:
+	Rscript -e "renv::snapshot(prompt = FALSE)"
+
+# Remove local renv library and lockfile (forces a fresh restore next time)
+clean-renv:
+	rm -rf renv/library renv/staging
+	rm -f renv.lock
+
+# Example placeholder for your pipeline; customize or add more recipes
+run-pipeline:
+	@echo "Add your pipeline command here, e.g.:"
+	@echo "  nextflow run nf-core/ampliseq ...."

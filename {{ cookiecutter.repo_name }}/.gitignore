@@ -1,0 +1,25 @@
+# R / RStudio
+.Rhistory
+.RData
+.Ruserdata
+.Rapp.history
+.Rproj.user
+
+# renv local libraries and caches
+renv/library/
+renv/staging/
+renv/python/
+renv/.cache/
+
+# Project outputs (kept out of git)
+data/
+results/
+sandbox/
+
+# Notebooks / workflow scratch
+**/.ipynb_checkpoints
+.snakemake/
+
+# Common noise
+.DS_Store
+__pycache__/
